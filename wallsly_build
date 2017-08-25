@@ -1,0 +1,47 @@
+#!/bin/bash
+
+set -x
+
+#if [  ! -f /home/workdir/README ];
+#then
+#	cp -r /home/builder/tmp/* /home/workdir/;
+#	cp -r /home/builder/tmp/.repo /home/workdir/;
+#fi
+
+cd /home/workdir
+mkdir -p /home/workdir/sstate-cache
+
+if [ ! -z $MANIFEST ];
+then
+	m=${MANIFEST}
+else
+	m=develop
+fi;
+
+# in case the copy from /home/builder/tmp gets removed later 
+if [ ! -f /home/workdir/.repo/manifest.xml ];
+then
+	repo init -u ssh://git@source.vivint.com:7999/em/yocto-bsp-manifests -m ${m}.xml 2> /dev/null
+
+	repo sync
+	
+	# Don't be root
+	userid=$(stat -c %u /home/workdir/README)
+	if [ $userid == 0 ]; then
+		sudo chown -R builder:builder /home/workdir
+	fi;
+fi;
+
+# if the manifest name does not match then remove .repo and sources then reinitialize????
+
+repo sync
+
+#source SOURCEME-slimline.sh
+#cd /home/workdir/build
+#source /home/localRepos/utils/bvernon_whitewash
+set +x
+SECONDS=0
+# bitbake sly-qt5-image
+minute=`expr $SECONDS / 60`
+second=$(($SECONDS % 60))
+echo "Your image took ${minute} minute(s) and ${second} second(s) to build. (${SECONDS} seconds total)"

@@ -1,0 +1,54 @@
+#!/bin/bash
+
+set -x
+
+# insert default gateway if it is set
+#if [ ! -z $DEFAULT_GATEWAY ];
+#then
+#	if ! grep -q $DEFAULT_GATEWAY /etc/resolv.conf;
+#	then
+#		cp /etc/resolv.conf /tmp
+#		t=$(grep -m 1 -n nameserver /tmp/resolv.conf | cut -d : -f 1)
+#		t2=`expr $t - 1`
+#		sed -i "${t2} a nameserver ${DEFAULT_GATEWAY}" /tmp/resolv.conf
+#		cp /tmp/resolv.conf /etc
+#	fi
+#fi
+
+cd /home/workdir
+
+if [  ! -d /home/workdir/openembed ];
+then
+    git clone ssh://git@source.vivint.com:7999/em/openembed
+fi
+
+cd /home/workdir/openembed
+if [  ! -d /home/workdir/openembed/downloads ];
+then
+    git clone ssh://git@source.vivint.com:7999/em/downloads
+    cd downloads
+    tar -Jxvf vivint_svn.tar.xz
+    cd -
+fi
+
+GIT_OE_SERVER="${GIT_OE_SERVER=ssh://git@source.vivint.com:7999/em/openembed}"
+
+if [ ! -z $GIT_OE_BRANCH ];
+then
+	b=${GIT_OE_BRANCH}
+else
+	b=develop
+fi;
+
+#git remote set-url origin ${GIT_OE_SERVER}
+#git fetch origin ${b}
+#git reset --hard FETCH_HEAD
+git clean -df
+git checkout ${b}
+#git pull
+#source ./README
+SECONDS=0
+#bitbake touchlink-qte-image
+minute=`expr $SECONDS / 60`
+second=$(($SECONDS % 60))
+echo "Your image took ${minute} minute(s) and ${second} second(s) to build. (${SECONDS} seconds total)"
