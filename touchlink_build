@@ -45,7 +45,7 @@ fi;
 #git reset --hard FETCH_HEAD
 git clean -df
 git checkout ${b}
-#git pull
+git pull
 #source ./README
 SECONDS=0
 #bitbake touchlink-qte-image
