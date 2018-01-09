@@ -1,0 +1,15 @@
+docker run -it --privileged --env-file /home/git/github/dockerbv/feature8681.env -v /dkbld/sky8681/:/home/workdir -v /home/git:/home/localRepos -v ~/Volumes/tftpboot:/tftpboot -v /tmp/.X11-unix:/tmp/.X11-unix vivint/touchlink:v9 /bin/bash
+
+
+
+docker run -it --env-file /home/git/github/dockerbv/feature8681.env -v /dkbld/sly8681/:/home/workdir -v /home/git:/home/localRepos -v /tmp/.X11-unix:/tmp/.X11-unix vivint/wallsly:v10 /bin/bash
+
+
+
+docker exec -e DISPLAY=$DISPLAY -it <containerid> /bin/bash
+
+docker exec -it <containerid> /bin/bash
+
+*~*~*
+
+
