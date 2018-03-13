@@ -1,3 +1,6 @@
+NOTE: create host directroy first, then do 'docker run' YES!
+
+
 docker run -it --privileged --env-file /home/git/github/dockerbv/develop.env -v /dkbld/sky1/:/home/workdir -v /home/git:/home/localRepos -v ~/Volumes/tftpboot:/tftpboot -v /tmp/.X11-unix:/tmp/.X11-unix vivint/touchlink:v10 /bin/bash
 docker run -it --privileged --env-file /home/git/github/dockerbv/local_dev.env -v /dkbld/sky2/:/home/workdir -v /home/git:/home/localRepos -v ~/Volumes/tftpboot:/tftpboot -v /tmp/.X11-unix:/tmp/.X11-unix vivint/touchlink:v10 /bin/bash
 docker run -it --privileged --env-file /home/git/github/dockerbv/apps_local_dev.env -v /dkbld/sky2/:/home/workdir -v /home/git:/home/localRepos -v ~/Volumes/tftpboot:/tftpboot -v /tmp/.X11-unix:/tmp/.X11-unix vivint/touchlink:v10 /bin/bash
@@ -10,6 +13,7 @@ docker run -it --env-file /home/git/github/dockerbv/local_dev.env -v /dkbld/sly2
 docker run -it --env-file /home/git/github/dockerbv/apps_local_dev.env -v /dkbld/sly2/:/home/workdir -v /home/git:/home/localRepos -v /tmp/.X11-unix:/tmp/.X11-unix vivint/wallsly:v10 /bin/bash
 docker run -it --env-file /home/git/github/dockerbv/linux_local_dev.env -v /dkbld/sly2/:/home/workdir -v /home/git:/home/localRepos -v /tmp/.X11-unix:/tmp/.X11-unix vivint/wallsly:v10 /bin/bash
 docker run -it --env-file /home/git/github/dockerbv/tlkernel_local_dev.env -v /dkbld/sly2/:/home/workdir -v /home/git:/home/localRepos -v /tmp/.X11-unix:/tmp/.X11-unix vivint/wallsly:v10 /bin/bash
+docker run -it --env-file /home/git/github/dockerbv/meta_vivint_local.env -v /dkbld/sly2/:/home/workdir -v /home/git:/home/localRepos -v /tmp/.X11-unix:/tmp/.X11-unix vivint/wallsly:v10 /bin/bash
 
 
 docker exec -e DISPLAY=$DISPLAY -it <containerid> /bin/bash
