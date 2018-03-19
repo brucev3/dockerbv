@@ -1,26 +1,36 @@
 NOTE: create host directroy first, then do 'docker run' YES!
 
+== Start the container in interactive mode ==
+=== touchlink (home ssd)
+docker run -it --privileged --env-file /home/git/github/dockerbv/develop.env -v /home/dkbld/sky1/:/home/workdir -v /home/git:/home/localRepos -v ~/Volumes/tftpboot:/tftpboot -v /tmp/.X11-unix:/tmp/.X11-unix vivint/touchlink:v10 /bin/bash
+docker run -it --privileged --env-file /home/git/github/dockerbv/local_dev.env -v /home/dkbld/sky2/:/home/workdir -v /home/git:/home/localRepos -v ~/Volumes/tftpboot:/tftpboot -v /tmp/.X11-unix:/tmp/.X11-unix vivint/touchlink:v10 /bin/bash
+docker run -it --privileged --env-file /home/git/github/dockerbv/apps_local_dev.env -v /home/dkbld/sky2/:/home/workdir -v /home/git:/home/localRepos -v ~/Volumes/tftpboot:/tftpboot -v /tmp/.X11-unix:/tmp/.X11-unix vivint/touchlink:v10 /bin/bash
+docker run -it --privileged --env-file /home/git/github/dockerbv/linux_local_dev.env -v /home/dkbld/sky2/:/home/workdir -v /home/git:/home/localRepos -v ~/Volumes/tftpboot:/tftpboot -v /tmp/.X11-unix:/tmp/.X11-unix vivint/touchlink:v10 /bin/bash
+docker run -it --privileged --env-file /home/git/github/dockerbv/tlkernel_local_dev.env -v /home/dkbld/sky2/:/home/workdir -v /home/git:/home/localRepos -v ~/Volumes/tftpboot:/tftpboot -v /tmp/.X11-unix:/tmp/.X11-unix vivint/touchlink:v10 /bin/bash
+docker run -it --privileged --env-file /home/git/github/dockerbv/openembed_local_dev.env  -v /home/dkbld/sky2/:/home/workdir -v /home/git:/home/localRepos -v ~/Volumes/tftpboot:/tftpboot -v /tmp/.X11-unix:/tmp/.X11-unix vivint/touchlink:v10 /bin/bash
+=== Run the touchlink build === 
+builder@f6fa4e8f237f:/home/workdir$ /home/builder/Repos/utils/touchlink_build
 
-docker run -it --privileged --env-file /home/git/github/dockerbv/develop.env -v /dkbld/sky1/:/home/workdir -v /home/git:/home/localRepos -v ~/Volumes/tftpboot:/tftpboot -v /tmp/.X11-unix:/tmp/.X11-unix vivint/touchlink:v10 /bin/bash
-docker run -it --privileged --env-file /home/git/github/dockerbv/local_dev.env -v /dkbld/sky2/:/home/workdir -v /home/git:/home/localRepos -v ~/Volumes/tftpboot:/tftpboot -v /tmp/.X11-unix:/tmp/.X11-unix vivint/touchlink:v10 /bin/bash
-docker run -it --privileged --env-file /home/git/github/dockerbv/apps_local_dev.env -v /dkbld/sky2/:/home/workdir -v /home/git:/home/localRepos -v ~/Volumes/tftpboot:/tftpboot -v /tmp/.X11-unix:/tmp/.X11-unix vivint/touchlink:v10 /bin/bash
-docker run -it --privileged --env-file /home/git/github/dockerbv/linux_local_dev.env -v /dkbld/sky2/:/home/workdir -v /home/git:/home/localRepos -v ~/Volumes/tftpboot:/tftpboot -v /tmp/.X11-unix:/tmp/.X11-unix vivint/touchlink:v10 /bin/bash
-docker run -it --privileged --env-file /home/git/github/dockerbv/tlkernel_local_dev.env -v /dkbld/sky2/:/home/workdir -v /home/git:/home/localRepos -v ~/Volumes/tftpboot:/tftpboot -v /tmp/.X11-unix:/tmp/.X11-unix vivint/touchlink:v10 /bin/bash
 
-
+=== wallsly/slimline (root ssd)
 docker run -it --env-file /home/git/github/dockerbv/develop.env -v /dkbld/sly1/:/home/workdir -v /home/git:/home/localRepos -v /tmp/.X11-unix:/tmp/.X11-unix vivint/wallsly:v10 /bin/bash
 docker run -it --env-file /home/git/github/dockerbv/local_dev.env -v /dkbld/sly2/:/home/workdir -v /home/git:/home/localRepos -v /tmp/.X11-unix:/tmp/.X11-unix vivint/wallsly:v10 /bin/bash
 docker run -it --env-file /home/git/github/dockerbv/apps_local_dev.env -v /dkbld/sly2/:/home/workdir -v /home/git:/home/localRepos -v /tmp/.X11-unix:/tmp/.X11-unix vivint/wallsly:v10 /bin/bash
 docker run -it --env-file /home/git/github/dockerbv/linux_local_dev.env -v /dkbld/sly2/:/home/workdir -v /home/git:/home/localRepos -v /tmp/.X11-unix:/tmp/.X11-unix vivint/wallsly:v10 /bin/bash
 docker run -it --env-file /home/git/github/dockerbv/tlkernel_local_dev.env -v /dkbld/sly2/:/home/workdir -v /home/git:/home/localRepos -v /tmp/.X11-unix:/tmp/.X11-unix vivint/wallsly:v10 /bin/bash
 docker run -it --env-file /home/git/github/dockerbv/meta_vivint_local.env -v /dkbld/sly2/:/home/workdir -v /home/git:/home/localRepos -v /tmp/.X11-unix:/tmp/.X11-unix vivint/wallsly:v10 /bin/bash
+=== Run the wallsly build === 
+builder@f6fa4e8f237f:/home/workdir$ /home/builder/Repos/utils/wallsly_build
 
-
+== Connect another host terminal to the container with X forwarding == 
 docker exec -e DISPLAY=$DISPLAY -it <containerid> /bin/bash
 
+== Connect another host terminal to the container ==
 docker exec -it <containerid> /bin/bash
 
-*~*~*
+
+
+*~*~* Old init commands
 
 docker run -it --env-file /home/git/github/dockerbv/develop.env -v /dkbld/sky1/:/home/workdir -v /home/git:/home/localRepos -v /tmp/.X11-unix:/tmp/.X11-unix vivint/touchlink:v3 /bin/bash
 docker run -it --env-file /home/git/github/dockerbv/local_dev.env -v /dkbld/sky2/:/home/workdir -v /home/git:/home/localRepos -v /tmp/.X11-unix:/tmp/.X11-unix vivint/touchlink:v3 /bin/bash
