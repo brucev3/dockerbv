@@ -10,7 +10,7 @@ builder@f6fa4e8f237f:/home/workdir$ /home/builder/Repos/utils/touchlink_build
 === wallsly/slimline (home ssd)
 docker run -it --env-file /home/git/github/dockerbv/dnld_retry.env -v /home/dkbld/sly_dnld_retry/:/home/workdir -v /home/git:/home/localRepos -v /tmp/.X11-unix:/tmp/.X11-unix vivint/wallsly:v10 /bin/bash
 === Run the wallsly build === 
-builder@f6fa4e8f237f:/home/workdir$  
+builder@f6fa4e8f237f:/home/workdir$  /home/builder/Repos/utils/wallsly_build
 
 
 == Connect another host terminal to the container with X forwarding == 
